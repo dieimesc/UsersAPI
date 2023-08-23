@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -22,5 +23,6 @@ namespace UsersAPI.Infra.Data.Mappings
             builder.Property(c => c.Password).IsRequired().HasMaxLength(30);
           
         }
+       
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-using Microsoft.EntityFrameworkCore;
 using Users.Domain.Models;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace UsersAPI.Infra.Data
 {
