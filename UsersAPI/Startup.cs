@@ -23,6 +23,7 @@ namespace UsersAPI
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -60,7 +61,7 @@ namespace UsersAPI
 
             services.AddSwaggerGen(gen =>
             {
-                gen.SwaggerDoc("v1.0", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Book Stores API", Version = "v1.0" });
+                gen.SwaggerDoc("v1.0", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Users API", Version = "v1.0" });
             });
         }
 
@@ -83,7 +84,7 @@ namespace UsersAPI
 
             app.UseSwaggerUI(ui =>
             {
-                ui.SwaggerEndpoint("/swagger/v1.0/swagger.json", "Book Stores API Endpoint");
+                ui.SwaggerEndpoint("/swagger/v1.0/swagger.json", "Users API Endpoint");
             });
 
             app.UseEndpoints(endpoints =>
