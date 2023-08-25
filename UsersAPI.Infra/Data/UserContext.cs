@@ -27,8 +27,9 @@ namespace UsersAPI.Infra.Data
         }
 
         public virtual DbSet<User> Users { get; set; }
-        
+        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
-       
+
+
     }
 }
