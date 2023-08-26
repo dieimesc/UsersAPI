@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace UsersAPI.Infra.Data
 {
+    // Contexto do banco de dados
     public partial class UserDBContext : DbContext
     {
         public UserDBContext()
@@ -27,7 +28,7 @@ namespace UsersAPI.Infra.Data
         }
 
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
+        
 
 
 

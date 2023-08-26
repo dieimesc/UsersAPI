@@ -14,6 +14,7 @@ namespace UsersAPI.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            //Mapeia a entidade User
             builder.ToTable("User");
 
             builder.HasKey(c => c.Id).HasName("Id");

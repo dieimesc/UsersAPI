@@ -29,17 +29,17 @@ namespace UsersAPI
         {
             services.AddControllers();
            
-
+            // Adiciona o contexto do banco de dados
             services.AddDbContext<UserDBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("UserDB")));
 
+            // Extrai as informações da chave de segurança
             var jwtSection = Configuration.GetSection("JWTSettings");
-            services.Configure<JWTSettings>(jwtSection);
-
-            //to validate the token which has been sent by clients
+            services.Configure<JWTSettings>(jwtSection);            
             var appSettings = jwtSection.Get<JWTSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.SecretKey);
 
+            //Addiciona a autenticação e configura o token
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -59,6 +59,7 @@ namespace UsersAPI
                 };
             });
 
+            // Adiciona o swagger
             services.AddSwaggerGen(gen =>
             {
                 gen.SwaggerDoc("v1.0", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Users API", Version = "v1.0" });
