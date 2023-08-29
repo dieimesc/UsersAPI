@@ -45,7 +45,8 @@ namespace UsersAPI.Controllers
         // POST: api/login
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult<dynamic>> Login([FromBody] User user)
+        
+        public async Task<ActionResult<object>> Login([FromBody] User user)
         {
             try
             {
@@ -65,8 +66,8 @@ namespace UsersAPI.Controllers
             }           
 
             //Gera a assinatura do Token
-            var token = GenerateAccessToken(user.Id);
-            return new 
+            var token = GenerateAccessToken(user.Id);           
+            return new
             {
                 user,
                 token
@@ -76,13 +77,13 @@ namespace UsersAPI.Controllers
         // GET: api/users/me
         [Authorize]
         [HttpGet("me")]
-        public async Task<ActionResult<User>> GetUserByAccessToken(string accessToken)
+        public async Task<ActionResult<User>> GetUserByAccessToken(string token)
         {
             try
             {
                 // Pega o usuário através do token informado
-                User user = await GetUserFromAccessToken(accessToken);
-                if (user != null)                                                   6
+                User user = await GetUserFromAccessToken(token);
+                if (user != null)                                                   
                 {
                     return user;
                 }
@@ -97,7 +98,7 @@ namespace UsersAPI.Controllers
             
         }                           
 
-        private async Task<User> GetUserFromAccessToken(string accessToken)
+        private async Task<User> GetUserFromAccessToken(string token)
         {
             try
             {
@@ -113,7 +114,7 @@ namespace UsersAPI.Controllers
                 };
 
                 SecurityToken securityToken;
-                var principle = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out securityToken);
+                var principle = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
 
                 JwtSecurityToken jwtSecurityToken = securityToken as JwtSecurityToken;
 

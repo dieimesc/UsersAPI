@@ -59,6 +59,10 @@ namespace UsersAPI
                 };
             });
 
+            //Adiciona o cors
+            services.AddCors(); // Make sure you call this previous to AddMvc
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
             // Adiciona o swagger
             services.AddSwaggerGen(gen =>
             {
@@ -87,6 +91,14 @@ namespace UsersAPI
             {
                 ui.SwaggerEndpoint("/swagger/v1.0/swagger.json", "Users API Endpoint");
             });
+
+            // TODO (somente em desenvolvimento ou homologação
+            app.UseCors(builder => builder
+              .AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+            
+
 
             app.UseEndpoints(endpoints =>
             {
